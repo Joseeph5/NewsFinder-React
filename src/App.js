@@ -1,0 +1,39 @@
+import React, { useEffect } from 'react';
+import Articles from './Articles';
+import SearchForm from './SearchForm';
+import { set_articles, set_isLoading } from './actions';
+import { connect } from 'react-redux';
+
+const searchUrl = 'https://hn.algolia.com/api/v1/search?query=';
+
+function App({ searchTerm, dispatch }) {
+  const fetchArticles = async (url, search) => {
+    dispatch({ type: set_isLoading });
+    try {
+      const res = await fetch(url + search);
+      const data = await res.json();
+      if (Array.isArray(data.hits)) {
+        dispatch({ type: set_articles, payload: data.hits });
+      }
+    } catch (error) {
+      console.log('Error: ', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchArticles(searchUrl, searchTerm);
+  }, [searchTerm]);
+
+  return (
+    <div className='section'>
+      <SearchForm />
+      <Articles />
+    </div>
+  );
+}
+
+const mapStateToProps = (store) => {
+  return { ...store };
+};
+
+export default connect(mapStateToProps)(App);
