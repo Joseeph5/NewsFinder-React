@@ -5,6 +5,7 @@ import DarkModeButton from './DarkModeButton';
 
 import { set_articles, set_isLoading } from './actions';
 import { connect } from 'react-redux';
+import NavBar from './NavBar';
 
 const searchUrl = 'https://hn.algolia.com/api/v1/search?query=';
 
@@ -28,13 +29,7 @@ function App({ searchTerm, dispatch }) {
 
   return (
     <main>
-      <nav className='nav-center'>
-        <h2>News Finder</h2>
-
-        <div>
-          <DarkModeButton />
-        </div>
-      </nav>
+      <NavBar />
       <div className='section'>
         <SearchForm />
         <Articles />
