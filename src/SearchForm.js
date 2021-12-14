@@ -13,7 +13,7 @@ function SearchForm({ dispatch }) {
 
   return (
     <form className='search-form' onSubmit={handleSearch}>
-      <h2>search news</h2>
+      <h3>search news</h3>
       <input type='text' className='form-input' ref={searchTerm} />
     </form>
   );

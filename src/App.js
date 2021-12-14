@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Articles from './Articles';
 import SearchForm from './SearchForm';
+import DarkModeButton from './DarkModeButton';
+
 import { set_articles, set_isLoading } from './actions';
 import { connect } from 'react-redux';
 
@@ -25,10 +27,19 @@ function App({ searchTerm, dispatch }) {
   }, [searchTerm]);
 
   return (
-    <div className='section'>
-      <SearchForm />
-      <Articles />
-    </div>
+    <main>
+      <nav className='nav-center'>
+        <h2>News Finder</h2>
+
+        <div>
+          <DarkModeButton />
+        </div>
+      </nav>
+      <div className='section'>
+        <SearchForm />
+        <Articles />
+      </div>
+    </main>
   );
 }
 
