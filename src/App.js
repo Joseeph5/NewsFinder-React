@@ -30,10 +30,9 @@ function App({ searchTerm, dispatch }) {
   return (
     <main>
       <NavBar />
-      <div className='section'>
-        <SearchForm />
-        <Articles />
-      </div>
+
+      <SearchForm />
+      <Articles />
     </main>
   );
 }

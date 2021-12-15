@@ -3,11 +3,13 @@ import DarkModeButton from './DarkModeButton';
 
 export default function NavBar() {
   return (
-    <nav className='nav-center'>
-      <h2>News Finder</h2>
+    <nav>
+      <div className='nav-center'>
+        <h2>News Finder</h2>
 
-      <div>
-        <DarkModeButton />
+        <div>
+          <DarkModeButton />
+        </div>
       </div>
     </nav>
   );
