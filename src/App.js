@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Articles from './Articles';
 import SearchForm from './SearchForm';
-import DarkModeButton from './DarkModeButton';
 
 import { set_articles, set_isLoading } from './actions';
 import { connect } from 'react-redux';

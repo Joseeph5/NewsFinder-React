@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-function Articles({ isLoading, articles, searchTerm }) {
+function Articles({ isLoading, articles, dispatch }) {
+  const removeArticle = (id) => {
+    const newArticles = articles.filter((article) => article.objectID !== id);
+    dispatch({ type: 'remove_article', payload: newArticles });
+  };
+
   if (isLoading) {
     return <div className='loading'></div>;
   }
@@ -23,7 +28,13 @@ function Articles({ isLoading, articles, searchTerm }) {
                 rel='noopener noreferrer'>
                 read more
               </a>
-              <button className='remove-btn'>remove</button>
+              <button
+                className='remove-btn'
+                onClick={() => {
+                  removeArticle(objectID);
+                }}>
+                remove
+              </button>
             </div>
           </article>
         );

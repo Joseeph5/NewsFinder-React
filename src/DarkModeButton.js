@@ -12,7 +12,6 @@ const getStorageTheme = () => {
 };
 
 export default function DarkModeButton() {
-  console.log(getStorageTheme().theme);
   const [theme, setTheme] = useState(getStorageTheme().theme);
   const [ballPosition, setBallPosition] = useState(getStorageTheme().ballPosition);
 

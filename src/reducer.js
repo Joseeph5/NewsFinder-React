@@ -1,4 +1,4 @@
-import { set_articles, set_isLoading, set_search_term } from './actions';
+import { remove_article, set_articles, set_isLoading, set_search_term } from './actions';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -8,7 +8,8 @@ const reducer = (state, action) => {
       return { ...state, searchTerm: action.payload };
     case set_isLoading:
       return { ...state, isLoading: true };
-
+    case remove_article:
+      return { ...state, articles: action.payload };
     default:
       return state;
   }
