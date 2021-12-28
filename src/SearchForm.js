@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { set_search_term } from './actions';
 
-function SearchForm({ dispatch }) {
+function SearchForm() {
   const searchTerm = useRef('');
+  const dispatch = useDispatch();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(searchTerm.current.value);
     dispatch({ type: set_search_term, payload: searchTerm.current.value });
   };
 
@@ -21,8 +21,4 @@ function SearchForm({ dispatch }) {
   );
 }
 
-const mapStateToProps = (store) => {
-  return { ...store };
-};
-
-export default connect(mapStateToProps)(SearchForm);
+export default SearchForm;

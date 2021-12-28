@@ -1,7 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-function Articles({ isLoading, articles, dispatch }) {
+function Articles() {
+  const { isLoading, articles } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   const removeArticle = (id) => {
     const newArticles = articles.filter((article) => article.objectID !== id);
     dispatch({ type: 'remove_article', payload: newArticles });
@@ -42,7 +45,5 @@ function Articles({ isLoading, articles, dispatch }) {
     </section>
   );
 }
-const mapStateToProps = (state) => {
-  return { ...state };
-};
-export default connect(mapStateToProps)(Articles);
+
+export default Articles;

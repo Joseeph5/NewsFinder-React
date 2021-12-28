@@ -3,16 +3,19 @@ import Articles from './Articles';
 import SearchForm from './SearchForm';
 
 import { set_articles, set_isLoading } from './actions';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import NavBar from './NavBar';
 
 const searchUrl = 'https://hn.algolia.com/api/v1/search?query=';
 
-function App({ searchTerm, dispatch }) {
-  const fetchArticles = async (url, search) => {
+function App() {
+  const { searchTerm } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const fetchArticles = async () => {
     dispatch({ type: set_isLoading });
     try {
-      const res = await fetch(url + search);
+      const res = await fetch(searchUrl + searchTerm);
       const data = await res.json();
       if (Array.isArray(data.hits)) {
         dispatch({ type: set_articles, payload: data.hits });
@@ -23,7 +26,8 @@ function App({ searchTerm, dispatch }) {
   };
 
   useEffect(() => {
-    fetchArticles(searchUrl, searchTerm);
+    fetchArticles();
+    // eslint-disable-next-line
   }, [searchTerm]);
 
   return (
@@ -36,8 +40,4 @@ function App({ searchTerm, dispatch }) {
   );
 }
 
-const mapStateToProps = (store) => {
-  return { ...store };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;
